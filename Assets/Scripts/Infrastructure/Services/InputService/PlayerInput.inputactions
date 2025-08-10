@@ -23,6 +23,15 @@
                     "processors": "NormalizeVector2",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Rotate",
+                    "type": "Value",
+                    "id": "f7738b43-5c39-4cde-832d-39a082779300",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -32,7 +41,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Player",
+                    "groups": "Player",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -54,7 +63,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Player",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -65,7 +74,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Player",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -76,7 +85,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Player",
+                    "groups": "Player",
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -87,8 +96,63 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Player",
                     "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Mouse",
+                    "id": "3330a45c-f8b9-4059-bfc6-c4834305a550",
+                    "path": "2DVector(mode=2)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Up",
+                    "id": "3cc18e1e-47e8-4796-ba59-6cb700a95c45",
+                    "path": "<Mouse>/delta/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Down",
+                    "id": "c6f5fcb1-2302-46d3-b615-ec4853b3d354",
+                    "path": "<Mouse>/delta/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Left",
+                    "id": "4b907f65-7e7f-4091-9d04-fb52ce07efdd",
+                    "path": "<Mouse>/delta/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Right",
+                    "id": "9cffa9e9-9138-4b9f-9f5e-14427e5a0300",
+                    "path": "<Mouse>/delta/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Player",
+                    "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
@@ -111,7 +175,7 @@
                     "isOR": false
                 },
                 {
-                    "devicePath": "<Touchscreen>",
+                    "devicePath": "<Gamepad>",
                     "isOptional": false,
                     "isOR": false
                 }

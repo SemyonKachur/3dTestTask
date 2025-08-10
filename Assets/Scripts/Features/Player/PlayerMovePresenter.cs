@@ -13,38 +13,60 @@ namespace Features.Player
     {
         private readonly IInputService _inputService;
         private readonly IPlayerView _playerView;
-        private readonly IPlayerModel _playerModel;
         private readonly CompositeDisposable _disposable;
 
         public PlayerMovePresenter(IInputService inputService, IPlayerView playerView, IPlayerModel playerModel)
         {
             _inputService = inputService;
             _playerView = playerView;
-            _playerModel = playerModel;
 
             _disposable = new();
         }
 
         public void Initialize()
         {
-            Observable.EveryUpdate()
-                .Subscribe(_ => MovePlayer(_inputService.Axis.Value))
+            Observable.EveryLateUpdate()
+                .Subscribe(_ =>
+                {
+                    MovePlayer(_inputService.MoveAxis.Value);
+                    RotatePlayer(_inputService.RotateAxisDelta.Value);
+                })
                 .AddTo(_disposable);
         }
-        
+
+        private void RotatePlayer(Vector2 axisValue)
+        {
+            if (Mathf.Abs(axisValue.x) > Constants.Epsilon)
+            {
+                float rotationDelta = axisValue.x * _inputService.RotateSpeed * Time.deltaTime;
+                Vector3 currentRotation = _playerView.CharacterController.transform.eulerAngles;
+                
+                float newRotationY = currentRotation.y + rotationDelta;
+                _playerView.CharacterController.transform.rotation = Quaternion.Euler(0f, newRotationY, 0f);
+            }
+        }
+
         private void MovePlayer(Vector2 direction)
         {
             Vector3 movementVector = Vector3.zero;
 
-            if (_inputService.Axis.Value.sqrMagnitude > Constants.Epsilon)
+            if (direction.sqrMagnitude > Constants.Epsilon)
             {
                 direction.Normalize();
                 
-                movementVector.z = direction.y;
-                movementVector.x = direction.x;
+                Transform playerTransform = _playerView.CharacterController.transform;
+                Vector3 forward = playerTransform.forward;
+                Vector3 right = playerTransform.right; 
+                
+                forward.y = 0f;
+                right.y = 0f;
+                forward.Normalize();
+                right.Normalize();
+                
+                movementVector = (forward * direction.y + right * direction.x);
             }
             
-            _playerView.CharacterController.Move(movementVector * _playerModel.MoveSpeed * Time.deltaTime);
+            _playerView.CharacterController.Move(movementVector * _inputService.MoveSpeed * Time.deltaTime);
         }
 
         public void Dispose()

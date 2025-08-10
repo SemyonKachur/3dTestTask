@@ -316,6 +316,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4979017703238020916, guid: df1baabd4eb675f4cbc0c7e72878b3cc, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 662964983}
     - target: {fileID: 6785955543813955702, guid: df1baabd4eb675f4cbc0c7e72878b3cc, type: 3}
       propertyPath: m_Name
       value: GameSceneContext

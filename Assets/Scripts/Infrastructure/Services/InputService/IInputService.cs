@@ -5,7 +5,11 @@ namespace Infrastructure.Services.InputService
 {
     public interface IInputService : IService
     {
-        ReactiveProperty<Vector2> Axis { get; }
+        public float MoveSpeed { get; }
+        public float RotateSpeed { get; }
+
+        ReactiveProperty<Vector2> MoveAxis { get; }
+        ReactiveProperty<Vector2> RotateAxisDelta { get; }
         
         ReactiveProperty<bool> IsFire { get; }
         
