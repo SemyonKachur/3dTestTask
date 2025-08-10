@@ -5,7 +5,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Infrastructure.Services.Boot
+namespace Infrastructure.Services.AutorizationService
 {
     public class MockAuthorizationService : IAuthService, IInitializable,  IDisposable
     {

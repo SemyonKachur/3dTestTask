@@ -1,5 +1,6 @@
 using System;
 using Cysharp.Threading.Tasks;
+using Infrastructure.Services.AutorizationService;
 using Infrastructure.Services.SceneLoader;
 using UniRx;
 using Zenject;

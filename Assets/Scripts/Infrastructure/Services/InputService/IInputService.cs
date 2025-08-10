@@ -1,11 +1,14 @@
+using UniRx;
 using UnityEngine;
 
 namespace Infrastructure.Services.InputService
 {
     public interface IInputService : IService
     {
-        Vector2 Axis { get; }
-
-        bool IsAttackClicked();
+        ReactiveProperty<Vector2> Axis { get; }
+        
+        ReactiveProperty<bool> IsFire { get; }
+        
+        void EnablePlayerInput(bool isEnable);
     }
 }

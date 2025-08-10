@@ -1,3 +1,4 @@
+using Infrastructure.Services.AutorizationService;
 using Infrastructure.Services.Boot;
 using Zenject;
 

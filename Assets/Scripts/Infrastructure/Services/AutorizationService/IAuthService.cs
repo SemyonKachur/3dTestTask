@@ -1,7 +1,6 @@
-using Infrastructure.Services.InputService;
 using UniRx;
 
-namespace Infrastructure.Services.Boot
+namespace Infrastructure.Services.AutorizationService
 {
     public interface IAuthService : IService
     {

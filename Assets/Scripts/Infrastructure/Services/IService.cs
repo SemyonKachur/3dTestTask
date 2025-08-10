@@ -1,4 +1,4 @@
-namespace Infrastructure.Services.InputService
+namespace Infrastructure.Services
 {
     public interface IService
     {
