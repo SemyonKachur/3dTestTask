@@ -1,4 +1,5 @@
 using System;
+using Features.Player.Stats;
 using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -13,16 +14,16 @@ namespace Infrastructure.Services.InputService
         public ReactiveProperty<bool> IsFire => _isFire;
         private ReactiveProperty<bool> _isFire = new(false);
 
-        public float MoveSpeed => _moveSpeed;
+        
         public float RotateSpeed => _rotationSpeed;
+        private float _rotationSpeed = 10;
+        
         public  ReactiveProperty<Vector2> MoveAxis => _move;
         private ReactiveProperty<Vector2> _move = new(Vector2.zero);
         
         private PlayerInput _input;
+        private ICharacterStat _moveStat;
         
-        //TODO: вынести в игровые конфигурации для настройки через UI
-        private float _moveSpeed = 5;
-        public float _rotationSpeed = 10;
         
         public void Initialize()
         {

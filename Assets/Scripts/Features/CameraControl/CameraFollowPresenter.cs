@@ -13,8 +13,7 @@ namespace Features.CameraControl
         private readonly ICameraProvider _cameraProvider;
         private readonly CompositeDisposable _disposable;
         
-        private readonly Vector3 _offset = new Vector3(0f, 1f, 0.5f); 
-        private readonly float _smoothTime = 0.1f;
+        private readonly Vector3 _offset = new Vector3(0f, 0.8f, 0.5f); 
 
         private Vector3 _currentVelocity;
 
@@ -39,13 +38,7 @@ namespace Features.CameraControl
             Vector3 targetPosition = _playerView.CharacterController.transform.position + 
                                      _playerView.CharacterController.transform.TransformDirection(_offset);
 
-            
-            _cameraProvider.Camera.transform.position = Vector3.SmoothDamp(
-                _cameraProvider.Camera.transform.position,
-                targetPosition,
-                ref _currentVelocity,
-                _smoothTime
-            );
+            _cameraProvider.Camera.transform.position = targetPosition;
         }
 
         public void Dispose()

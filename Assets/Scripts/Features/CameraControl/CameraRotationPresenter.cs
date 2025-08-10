@@ -46,7 +46,7 @@ namespace Features.CameraControl
         {
             if (Mathf.Abs(verticalInput) > Constants.Epsilon)
             {
-                float rotationDelta = verticalInput * _inputService.RotateSpeed * Time.deltaTime;
+                float rotationDelta = verticalInput * Constants.RotateSpeed * Time.deltaTime;
                 _currentVerticalAngle -= rotationDelta;
                 _currentVerticalAngle = Mathf.Clamp(_currentVerticalAngle, _minVerticalAngle, _maxVerticalAngle);
             }

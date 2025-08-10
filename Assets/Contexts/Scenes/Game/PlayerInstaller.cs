@@ -16,9 +16,9 @@ namespace Contexts.Scenes.Game
         
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<InputService>().AsSingle();
-            
             Container.Bind<IPlayerModel>().To<PlayerModel>().AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<InputService>().AsSingle();
             
             var playerViewInstance = Container.InstantiatePrefabForComponent<PlayerView>(_playerView, _spawnPoint);
             Container.Bind<IPlayerView>().To<PlayerView>().FromInstance(playerViewInstance).AsSingle();
