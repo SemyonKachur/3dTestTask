@@ -6,5 +6,6 @@ namespace Infrastructure.Utils
         
         public const float DefaultPlayerSpeed = 5f;
         public const float RotateSpeed = 10;
+        public const string GameLevelName = "Game";
     }
 }

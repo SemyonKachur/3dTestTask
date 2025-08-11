@@ -4,7 +4,7 @@ namespace Features.Player.Stats
 {
     public interface ICharacterStat
     {
-        public string Id { get; }
+        public CharacterStatTypeId Id { get; }
         public string Name { get; }
         public string Description { get; }
         public float MaxValue { get; }

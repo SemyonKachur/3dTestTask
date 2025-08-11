@@ -15,7 +15,7 @@ namespace Infrastructure.Services.SceneLoader
         {
             if (IsSceneLoaded(sceneName))
             {
-                Debug.LogError($"[SceneLoader] Scene '{sceneName}' is already loaded.");
+                Debug.Log($"[SceneLoader] Scene '{sceneName}' is already loaded.");
                 onLoaded?.Invoke();
                 return;
             }

@@ -31,7 +31,7 @@ namespace Features.Player
 
         public void Initialize()
         {
-            _moveStat = _playerModel.Stats.FirstOrDefault(x => x.Id == "Speed");
+            _moveStat = _playerModel.Stats.FirstOrDefault(x => x.Id == CharacterStatTypeId.Speed);
             if (_moveStat != null)
             {
                 _moveStat.CurrentValue

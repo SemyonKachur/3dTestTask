@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Cysharp.Threading.Tasks;
@@ -49,13 +50,20 @@ namespace Infrastructure.Services.SaveService
                 Directory.CreateDirectory(path);
 
             var json = JsonConvert.SerializeObject(_progressService.Progress, _jsonSettings);
-
+            
             var fullPath = Path.Combine(path, FileName);
-            await using var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write, FileShare.None, DefaultBufferSize, true);
-            await using var writer = new StreamWriter(fs);
-            await writer.WriteAsync(json);
 
-            Debug.Log($"[SaveLoad] Progress saved: {fullPath}");
+            try
+            {
+                await using var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write, FileShare.None, DefaultBufferSize, true);
+                await using var writer = new StreamWriter(fs);
+                await writer.WriteAsync(json);
+                Debug.Log($"[SaveLoad] Progress saved: {fullPath}");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[SaveLoad] Progress save error: {e}");
+            }
         }
 
         public async UniTask<PlayerProgress> LoadProgress()
@@ -64,18 +72,25 @@ namespace Infrastructure.Services.SaveService
 
             if (!File.Exists(fullPath))
             {
-                Debug.LogWarning("[SaveLoad] No save data. Start new progress");
-                _progressService.Progress = new PlayerProgress();
-                return _progressService.Progress;
+                Debug.LogWarning("[SaveLoad] No save data.");
+                return null;
+            }
+            
+            PlayerProgress progress = null;
+
+            try
+            {
+                await using var fs = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read, DefaultBufferSize, true);
+                using var reader = new StreamReader(fs);
+                var json = await reader.ReadToEndAsync();
+
+                progress = JsonConvert.DeserializeObject<PlayerProgress>(json, _jsonSettings) ?? new PlayerProgress();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"[SaveLoad] Progress load error: {e}");
             }
 
-            await using var fs = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read, DefaultBufferSize, true);
-            using var reader = new StreamReader(fs);
-            var json = await reader.ReadToEndAsync();
-
-            var progress = JsonConvert.DeserializeObject<PlayerProgress>(json, _jsonSettings) ?? new PlayerProgress();
-
-            _progressService.Progress = progress;
             return progress;
         }
     }

@@ -6,12 +6,13 @@ using Features.Player.Stats;
 using Infrastructure.Services.ContentProvider;
 using Infrastructure.Services.SaveService;
 using StaticData;
+using UnityEngine;
 
 namespace Infrastructure.Services.StaticDataService
 {
     public class StaticDataService : IStaticDataService
     {
-        private const string PlayerStaticDataPath = "StaticData/Player";
+        private const string PlayerStaticDataPath = "StaticData/Player/PlayerStaticData";
         
         private readonly IContentProvider _contentProvider;
 
@@ -35,6 +36,10 @@ namespace Infrastructure.Services.StaticDataService
                 CharacterDefaultItems = playerData.ItemConfigs
                     .OfType<IItem>()
                     .ToList();
+            }
+            else
+            {
+                Debug.LogError($"No player data found for {PlayerStaticDataPath}");
             }
         }
     }

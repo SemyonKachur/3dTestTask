@@ -1,15 +1,16 @@
-using Infrastructure.Services.SaveService;
+using System;
 using UniRx;
 
 namespace Features.Inventory
 {
+    [Serializable]
     public class InventoryItemBase :  IItem
     {
-        public string Id { get; }
-        public string Name { get; }
-        public string Description { get; }
-        public string ImagePath { get; }
-        public ReactiveProperty<int> Count { get; }
-        public bool IsStackable { get; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string ImagePath { get; set; }
+        public ReactiveProperty<int> Count { get; set; }
+        public bool IsStackable { get; set; }
     }
 }

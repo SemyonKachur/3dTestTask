@@ -1,51 +1,19 @@
-using System;
-using Cysharp.Threading.Tasks;
-using Infrastructure.Services.AutorizationService;
-using Infrastructure.Services.SceneLoader;
-using UniRx;
+using Infrastructure.States;
+using UnityEngine;
 using Zenject;
 
 namespace Infrastructure.Services.Boot
 {
-    public class Boot : IInitializable, IDisposable
+    public class Boot : MonoBehaviour
     {
-        private const string GAME_SCENE_NAME = "Game";
+        private Game _game;
 
-        private readonly IAuthService _authService;
-        private readonly ISceneLoader _sceneLoader;
-        private readonly CompositeDisposable _disposables;
-
-        public Boot(IAuthService authService, ISceneLoader sceneLoader)
+        [Inject]
+        public void Construct(DiContainer container)
         {
-            _authService = authService;
-            _sceneLoader = sceneLoader;
-
-            _disposables = new();
-        }
-        
-        public void Initialize()
-        {
-            SubscribeAuth();
-        }
-
-        private void SubscribeAuth()
-        {
-            _authService.IsAuthComplete
-                .Subscribe(async x => StartGame(x).Forget())
-                .AddTo(_disposables);
-        }
-
-        private async UniTask StartGame(bool isAuthComplete)
-        {
-            if (isAuthComplete)
-            {
-                await _sceneLoader.LoadSceneAsync(GAME_SCENE_NAME);
-            }
-        }
-
-        public void Dispose()
-        {
-            _disposables.Dispose();
+            _game = new Game(container);
+            _game.StateMachine.Enter<BootstrapState>();
+            DontDestroyOnLoad(this);
         }
     }
 }

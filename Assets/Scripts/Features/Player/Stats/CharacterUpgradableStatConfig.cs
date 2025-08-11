@@ -1,8 +1,10 @@
+using System;
 using UniRx;
 using UnityEngine;
 
 namespace Features.Player.Stats
 {
+    [Serializable]
     [CreateAssetMenu(fileName = nameof(CharacterUpgradableStatConfig),  menuName = "Stats/" + nameof(CharacterUpgradableStatConfig))]
     public class CharacterUpgradableStatConfig : CharacterStatConfig, IUpgradableCharacterStat
     {
