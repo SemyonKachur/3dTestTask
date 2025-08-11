@@ -12,7 +12,7 @@ namespace Features.Player.Model
     public class PlayerModel : IPlayerModel, IDisposable
     {
         public List<ICharacterStat> Stats { get; private set; } = new();
-        public List<IItem> Items { get; private set; }
+        public List<IItem> Items { get; private set; } = new();
         public ReactiveProperty<bool> IsDead { get; } = new(false);
 
         private ICharacterStat _healthStat;

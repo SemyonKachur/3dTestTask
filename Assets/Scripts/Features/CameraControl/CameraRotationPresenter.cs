@@ -51,9 +51,9 @@ namespace Features.CameraControl
                 _currentVerticalAngle = Mathf.Clamp(_currentVerticalAngle, _minVerticalAngle, _maxVerticalAngle);
             }
             
-            Vector3 lookAtPosition = _playerView.CharacterController.transform.position;
+            Vector3 lookAtPosition = _playerView.PlayerRoot.position;
             Quaternion targetRotation = Quaternion.Euler(_currentVerticalAngle,
-                _playerView.CharacterController.transform.eulerAngles.y, 0f);
+                _playerView.PlayerRoot.eulerAngles.y, 0f);
             _cameraProvider.Camera.transform.rotation = targetRotation;
         }
 

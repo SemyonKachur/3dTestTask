@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3088759243927444649}
-  - component: {fileID: 4979017703238020916}
+  - component: {fileID: 4675420007315420172}
   m_Layer: 0
   m_Name: CameraProvider
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4134833930586273595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4979017703238020916
+--- !u!114 &4675420007315420172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1036972701989349445}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5d196c4e07d46048f6c70f1921261f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a5612d61c8840bfa9bb4c1540f110d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
@@ -91,9 +91,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ab6aef6a814a079274b0c2d4c47a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerView: {fileID: 5101449026173141662, guid: 91bb77a4d0564934fb05e4212016a828, type: 3}
+  _playerView: {fileID: 2158389284383107109, guid: c5efc39a8aaf6e64ea40e9ad573e9b47, type: 3}
   _spawnPoint: {fileID: 1533261916697684225}
-  _cameraProvider: {fileID: 4979017703238020916}
+  _cameraProvider: {fileID: 4675420007315420172}
 --- !u!1 &6785955543813955702
 GameObject:
   m_ObjectHideFlags: 0

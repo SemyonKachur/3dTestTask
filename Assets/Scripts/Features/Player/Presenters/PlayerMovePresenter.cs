@@ -58,10 +58,10 @@ namespace Features.Player
             if (Mathf.Abs(axisValue.x) > Constants.Epsilon)
             {
                 float rotationDelta = axisValue.x * Constants.RotateSpeed * Time.deltaTime;
-                Vector3 currentRotation = _playerView.CharacterController.transform.eulerAngles;
+                Vector3 currentRotation = _playerView.PlayerRoot.eulerAngles;
                 
                 float newRotationY = currentRotation.y + rotationDelta;
-                _playerView.CharacterController.transform.rotation = Quaternion.Euler(0f, newRotationY, 0f);
+                _playerView.PlayerRoot.rotation = Quaternion.Euler(0f, newRotationY, 0f);
             }
         }
 
@@ -73,7 +73,7 @@ namespace Features.Player
             {
                 direction.Normalize();
                 
-                Transform playerTransform = _playerView.CharacterController.transform;
+                Transform playerTransform = _playerView.PlayerRoot;
                 Vector3 forward = playerTransform.forward;
                 Vector3 right = playerTransform.right; 
                 
@@ -85,7 +85,7 @@ namespace Features.Player
                 movementVector = (forward * direction.y + right * direction.x);
             }
             
-            _playerView.CharacterController.Move(movementVector * _moveSpeed * Time.deltaTime);
+            _playerView.PlayerRoot.Translate(movementVector * _moveSpeed * Time.deltaTime);
         }
 
         public void Dispose()

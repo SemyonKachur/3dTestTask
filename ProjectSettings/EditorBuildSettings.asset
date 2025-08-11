@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: e26323bb62051464a8f2ef6d4d91d23a
+  - enabled: 1
+    path: Assets/Starter Assets/Sample/ThirdPersonController/Playground.unity
+    guid: e9017d5f96b9f09489b4b37e1d6eb914
   m_configObjects: {}

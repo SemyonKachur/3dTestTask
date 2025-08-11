@@ -1,6 +1,5 @@
 using Features.CameraControl;
 using Features.Player;
-using Features.Player.Model;
 using Features.Player.View;
 using Infrastructure.Services.InputService;
 using UnityEngine;
@@ -12,7 +11,7 @@ namespace Contexts.Scenes.Game
     {
         [SerializeField] private PlayerView _playerView;
         [SerializeField] private Transform _spawnPoint;
-        [SerializeField] private CameraProvider _cameraProvider;
+        [SerializeField] private CinemachineCameraProvider _cameraProvider;
         
         public override void InstallBindings()
         {
@@ -21,11 +20,10 @@ namespace Contexts.Scenes.Game
             var playerViewInstance = Container.InstantiatePrefabForComponent<PlayerView>(_playerView, _spawnPoint);
             Container.Bind<IPlayerView>().To<PlayerView>().FromInstance(playerViewInstance).AsSingle();
             
-            Container.Bind<ICameraProvider>().FromInstance(_cameraProvider).AsSingle();
+            Container.Bind<ICinemachineProvider>().FromInstance(_cameraProvider).AsSingle();
             Container.BindInterfacesAndSelfTo<CameraFollowPresenter>().AsSingle();
-            Container.BindInterfacesAndSelfTo<CameraRotationPresenter>().AsSingle();
             
-            Container.BindInterfacesAndSelfTo<PlayerMovePresenter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CharacterControllerInputAdapter>().AsSingle();
         }
     }
 }
