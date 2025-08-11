@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Features.Player.Stats;
 using UniRx;
+using UnityEngine;
 
 namespace Features.Player.Model
 {

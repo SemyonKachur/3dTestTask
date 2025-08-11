@@ -1,5 +1,8 @@
+using System;
+
 namespace Features.Player.Stats
 {
+    [Serializable]
     public enum CharacterStatTypeId
     {
         None = 0,

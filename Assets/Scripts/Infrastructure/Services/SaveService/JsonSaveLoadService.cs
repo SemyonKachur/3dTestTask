@@ -26,7 +26,7 @@ namespace Infrastructure.Services.SaveService
             Formatting = Formatting.Indented,
             NullValueHandling = NullValueHandling.Ignore,
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-            TypeNameHandling = TypeNameHandling.None,
+            TypeNameHandling = TypeNameHandling.Auto,
             Converters = new List<JsonConverter>
             {
                 new InterfaceTypeConverter<ICharacterStat>(),
@@ -84,7 +84,7 @@ namespace Infrastructure.Services.SaveService
                 using var reader = new StreamReader(fs);
                 var json = await reader.ReadToEndAsync();
 
-                progress = JsonConvert.DeserializeObject<PlayerProgress>(json, _jsonSettings) ?? new PlayerProgress();
+                progress = JsonConvert.DeserializeObject<PlayerProgress>(json, _jsonSettings);
             }
             catch (Exception e)
             {
