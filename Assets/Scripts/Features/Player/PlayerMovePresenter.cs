@@ -47,8 +47,8 @@ namespace Features.Player
             Observable.EveryLateUpdate()
                 .Subscribe(_ =>
                 {
-                    MovePlayer(_inputService.MoveAxis.Value);
-                    RotatePlayer(_inputService.RotateAxisDelta.Value);
+                    MovePlayer(_inputService.Move);
+                    RotatePlayer(_inputService.Look);
                 })
                 .AddTo(_disposable);
         }

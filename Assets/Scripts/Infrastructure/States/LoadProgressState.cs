@@ -51,7 +51,7 @@ namespace Infrastructure.States
             else
             {
                 _progressService.Progress =  progress;
-                _playerModel.LoadPlayerStats(_progressService.Progress.CharacterStats); 
+                _playerModel.LoadProgress(_progressService.Progress); 
             }
         }
 
@@ -107,7 +107,7 @@ namespace Infrastructure.States
                 _progressService.Progress.InventoryItems.Add(defaultItem);
             }
             
-            _playerModel.LoadPlayerStats(_progressService.Progress.CharacterStats); 
+            _playerModel.LoadProgress(_progressService.Progress); 
         }
     }
 }

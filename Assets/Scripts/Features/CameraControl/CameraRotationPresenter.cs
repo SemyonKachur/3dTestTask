@@ -35,8 +35,8 @@ namespace Features.CameraControl
             _currentVerticalAngle = NormalizeAngle(_currentVerticalAngle);
             
             Observable.EveryLateUpdate()
-                .Where(_ => Mathf.Abs(_inputService.RotateAxisDelta.Value.y) > Constants.Epsilon)
-                .Subscribe(_ => UpdateCameraRotation(_inputService.RotateAxisDelta.Value.y))
+                .Where(_ => Mathf.Abs(_inputService.Look.y) > Constants.Epsilon)
+                .Subscribe(_ => UpdateCameraRotation(_inputService.Look.y))
                 .AddTo(_disposable);
             
             UpdateCameraRotation(0f);

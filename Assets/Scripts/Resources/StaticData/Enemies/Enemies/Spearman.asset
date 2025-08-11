@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441dfe83e85f496aa69fbeb35525a5d0, type: 3}
+  m_Name: Spearman
+  m_EditorClassIdentifier: 
+  <EnemyType>k__BackingField: 2
+  <Stats>k__BackingField:
+  - {fileID: 11400000, guid: e4dba12aedc470d4daaf7cd03562f66a, type: 2}
+  - {fileID: 11400000, guid: 3370613c2127bcd4abdb969bf1dfa04a, type: 2}
+  - {fileID: 11400000, guid: 9cad105d3977fff45b62240aaf445e57, type: 2}
+  - {fileID: 11400000, guid: b592f2fa4112f2144993f8822c6b226d, type: 2}

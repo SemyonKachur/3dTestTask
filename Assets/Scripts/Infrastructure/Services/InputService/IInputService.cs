@@ -5,11 +5,17 @@ namespace Infrastructure.Services.InputService
 {
     public interface IInputService : IService
     {
-        ReactiveProperty<Vector2> MoveAxis { get; }
-        ReactiveProperty<Vector2> RotateAxisDelta { get; }
+        Vector2 Move { get; }
+        Vector2 Look { get; }
         
-        ReactiveProperty<bool> IsFire { get; }
+        bool IsFire { get; }
         
         void EnablePlayerInput(bool isEnable);
+
+        public void MoveInput(Vector2 newMoveDirection);
+
+        public void LookInput(Vector2 newLookDirection);
+
+        public void FireInput(bool isFire);
     }
 }

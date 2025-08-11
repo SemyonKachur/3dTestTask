@@ -8,6 +8,7 @@ namespace Features.Player.Stats
         None = 0,
         Health = 1,
         Damage = 2,
-        Speed = 3
+        Speed = 3,
+        AttackRange = 4,
     }
 }

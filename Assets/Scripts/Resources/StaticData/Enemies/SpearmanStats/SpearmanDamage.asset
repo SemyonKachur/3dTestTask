@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f38ca4dbb84e3cbc143f99a8d7433f, type: 3}
+  m_Name: SpearmanDamage
+  m_EditorClassIdentifier: 
+  <Id>k__BackingField: 2
+  <Name>k__BackingField: Spearman Damage
+  <Description>k__BackingField: Damage
+  <MaxValue>k__BackingField: 4
+  <MinValue>k__BackingField: 0
+  <CurrentValue>k__BackingField:
+    value: 4
+  <DefaultValue>k__BackingField: 4

@@ -1,6 +1,5 @@
 using System;
 using Features.Player.Stats;
-using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -9,28 +8,26 @@ namespace Infrastructure.Services.InputService
 {
     public class InputService : IInputService, IInitializable, IDisposable
     {
-        public ReactiveProperty<Vector2> RotateAxisDelta => _rotateAxisDelta;
-        private ReactiveProperty<Vector2> _rotateAxisDelta = new (Vector2.zero);
-        public ReactiveProperty<bool> IsFire => _isFire;
-        private ReactiveProperty<bool> _isFire = new(false);
-
+        public Vector2 Move => _move;
+        private Vector2 _move;
+        
+        public Vector2 Look => _look;
+        private Vector2 _look;
+        public bool IsFire => _isFire;
+        private bool _isFire;
         
         public float RotateSpeed => _rotationSpeed;
         private float _rotationSpeed = 10;
         
-        public  ReactiveProperty<Vector2> MoveAxis => _move;
-        private ReactiveProperty<Vector2> _move = new(Vector2.zero);
-        
         private PlayerInput _input;
         private ICharacterStat _moveStat;
-        
         
         public void Initialize()
         {
             _input = new PlayerInput();
             EnablePlayerInput(true);
             
-            _input.Player.Move.performed += Move;
+            _input.Player.Move.performed += SetMove;
             _input.Player.Move.canceled += StopMove;
             
             _input.Player.Rotate.performed += Rotate;
@@ -52,28 +49,45 @@ namespace Infrastructure.Services.InputService
             }
         }
 
+        public void MoveInput(Vector2 newMoveDirection)
+        {
+            _move = newMoveDirection;
+        }
+
+        public void LookInput(Vector2 newLookDirection)
+        {
+            _look = newLookDirection;
+        }
+
+        public void FireInput(bool isFire)
+        {
+            _isFire = isFire;
+        }
+
         private void Fire(InputAction.CallbackContext ctx) => 
-            _isFire.Value = true;
+            _isFire = true;
         
         private void StopFire(InputAction.CallbackContext obj) => 
-            _isFire.Value = false;
+            _isFire = false;
         
         private void Rotate(InputAction.CallbackContext ctx) =>
-            _rotateAxisDelta.Value = ctx.ReadValue<Vector2>();
+            _look = ctx.ReadValue<Vector2>();
         private void StopRotate(InputAction.CallbackContext ctx) =>
-            _rotateAxisDelta.Value = Vector2.zero;
+            _look = Vector2.zero;
 
-        private void Move(InputAction.CallbackContext ctx) => 
-            _move.Value = ctx.ReadValue<Vector2>();
+        private void SetMove(InputAction.CallbackContext ctx) => 
+            _move = ctx.ReadValue<Vector2>();
 
         private void StopMove(InputAction.CallbackContext ctx) => 
-            _move.Value = Vector2.zero;
+            _move = Vector2.zero;
+        
+        
 
         public void Dispose()
         {
             if (_input != null)
             {
-                _input.Player.Move.performed -= Move;
+                _input.Player.Move.performed -= SetMove;
                 _input.Player.Move.canceled -= StopMove;
                 
                 _input.Player.Rotate.performed -= Rotate;

@@ -26,10 +26,6 @@ namespace Features.CameraControl
 
         public void Initialize()
         {
-            Observable.EveryLateUpdate()
-                .Subscribe(_ => UpdateCameraPosition())
-                .AddTo(_disposable);
-            
             UpdateCameraPosition();
         }
 
@@ -39,6 +35,7 @@ namespace Features.CameraControl
                                      _playerView.CharacterController.transform.TransformDirection(_offset);
 
             _cameraProvider.Camera.transform.position = targetPosition;
+            _cameraProvider.Camera.transform.parent = _playerView.CharacterController.transform;
         }
 
         public void Dispose()
