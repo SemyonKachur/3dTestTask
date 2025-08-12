@@ -26,9 +26,10 @@ namespace Infrastructure.Factory
             var enemyView = GameObject.Instantiate(prefab, position, Quaternion.identity);
             
             var enemyPresenter = new EnemyPresenter(enemy, enemyView);
-            _presenters.Add(enemyPresenter); 
+            enemyPresenter.Initialize();
+            _presenters.Add(enemyPresenter);
             
-            //TODO: добавить компоненты пресследования
+            enemyView.SetTarget(_playerView.PlayerRoot);
             return enemyView;
         }
 

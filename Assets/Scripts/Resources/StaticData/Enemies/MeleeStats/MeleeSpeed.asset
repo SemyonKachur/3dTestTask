@@ -15,8 +15,8 @@ MonoBehaviour:
   <Id>k__BackingField: 3
   <Name>k__BackingField: Melee Speed
   <Description>k__BackingField: Speed
-  <MaxValue>k__BackingField: 4
+  <MaxValue>k__BackingField: 5
   <MinValue>k__BackingField: 0
   <CurrentValue>k__BackingField:
-    value: 4
-  <DefaultValue>k__BackingField: 4
+    value: 5
+  <DefaultValue>k__BackingField: 5

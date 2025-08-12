@@ -15,8 +15,8 @@ MonoBehaviour:
   <Id>k__BackingField: 4
   <Name>k__BackingField: Attack Range
   <Description>k__BackingField: Attack range
-  <MaxValue>k__BackingField: 2
+  <MaxValue>k__BackingField: 3
   <MinValue>k__BackingField: 0
   <CurrentValue>k__BackingField:
-    value: 2
-  <DefaultValue>k__BackingField: 2
+    value: 1
+  <DefaultValue>k__BackingField: 1
