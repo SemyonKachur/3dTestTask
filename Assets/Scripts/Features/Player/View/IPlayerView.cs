@@ -8,5 +8,7 @@ namespace Features.Player.View
         public Transform CameraRoot { get; }
         public Animator Animator { get; }
         public Transform ShootPoint { get; }
+
+        public void AttackPerformed();
     }
 }

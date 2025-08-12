@@ -1,4 +1,5 @@
 using Features.CameraControl;
+using Features.Player.BaseAttack;
 using Features.Player.View;
 using Infrastructure.Factory;
 using Infrastructure.Services.InputService;
@@ -23,6 +24,7 @@ namespace Contexts.Scenes.Game
             Container.BindInterfacesAndSelfTo<CameraFollowPresenter>().AsSingle();
             
             Container.BindInterfacesAndSelfTo<CharacterControllerInputAdapter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerBaseAttackPresenter>().AsSingle();
         }
     }
 }

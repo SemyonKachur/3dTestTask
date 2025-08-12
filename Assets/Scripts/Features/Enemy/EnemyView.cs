@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,10 +8,13 @@ namespace Features.Enemy
 {
     public class EnemyView : MonoBehaviour, IEnemyView
     {
+        public ReactiveCommand<float> OnDamageRecieved { get; } = new();
+        
         [field:SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
         [field:SerializeField] public Animator Animator { get; private set; }
 
         private CompositeDisposable _disposables = new();
+        private CancellationTokenSource _cts = new();
 
         public void SetSpeed(float speedCurrentValue) => 
             NavMeshAgent.speed = speedCurrentValue;
@@ -24,19 +28,39 @@ namespace Features.Enemy
             {
                 NavMeshAgent.ResetPath();
                 _disposables?.Dispose();
+                
+                _cts.Cancel();
+                _cts = null;
+                
                 return;
             }
             
+            _cts = new CancellationTokenSource();
+            
             Observable.Interval(TimeSpan.FromSeconds(.5f))
-                .Subscribe(x => NavMeshAgent.SetDestination(target.position))
+                .TakeUntilDestroy(gameObject)
+                .Subscribe(x =>
+                {
+                    if (_cts is { IsCancellationRequested: false })
+                    {
+                        NavMeshAgent.SetDestination(target.position);
+                    }
+                })
                 .AddTo(_disposables);
         }
 
         public void Dispose()
         {
-            _disposables?.Dispose();
-            _disposables = null;
-            GameObject.Destroy(gameObject);
+            _disposables.Dispose();
+            _cts.Cancel();
+            _cts = null;
+            
+            Destroy(gameObject);
+        }
+
+        public void ApplyDamage(float damage)
+        {
+            OnDamageRecieved.Execute(damage);
         }
     }
 }

@@ -9,7 +9,7 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Features.Player
+namespace Features.Player.Presenters
 {
     public class PlayerMovePresenter : IInitializable, IDisposable
     {

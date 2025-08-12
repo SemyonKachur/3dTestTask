@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _uiRoot: {fileID: 0}
   _staticData: {fileID: 11400000, guid: 9756b205b987f99409eacac41b7246fe, type: 2}
+  _bulletPrefab: {fileID: 6255777522824413016, guid: d5c7a7e87ce77fd4698537c73dff12a9, type: 3}
 --- !u!1 &6785955543813955702
 GameObject:
   m_ObjectHideFlags: 0

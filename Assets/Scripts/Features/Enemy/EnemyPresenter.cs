@@ -18,7 +18,7 @@ namespace Features.Enemy
             
             _disposables = new();
         }
-        
+
         public void Initialize()
         {
             var health = _model.Stats.FirstOrDefault(x => x.Id == CharacterStatTypeId.Health);
@@ -32,6 +32,10 @@ namespace Features.Enemy
                         _view.Dispose();
                     }
                 }).AddTo(_disposables);
+                
+                _view.OnDamageRecieved
+                    .Subscribe(damage => health.CurrentValue.Value -= damage)
+                    .AddTo(_disposables);
             }
             
             var speed = _model.Stats.FirstOrDefault(x => x.Id == CharacterStatTypeId.Speed);
@@ -39,7 +43,7 @@ namespace Features.Enemy
             {
                 _view.SetSpeed(speed.CurrentValue.Value);
             }
-            
+
             var attackRange = _model.Stats.FirstOrDefault(x => x.Id == CharacterStatTypeId.AttackRange);
             if (attackRange != null)
             {
