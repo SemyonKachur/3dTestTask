@@ -4,19 +4,18 @@ using Cysharp.Threading.Tasks;
 using Features.Inventory;
 using Features.Player.Stats;
 using Infrastructure.Services.ContentProvider;
-using Infrastructure.Services.SaveService;
 using StaticData;
 using UnityEngine;
 
 namespace Infrastructure.Services.StaticDataService
 {
-    public class StaticDataService : IStaticDataService
+    public class PlayerStaticDataLoader : IPlayerStaticDataLoader
     {
         private const string PlayerStaticDataPath = "StaticData/Player/PlayerStaticData";
         
         private readonly IContentProvider _contentProvider;
 
-        public StaticDataService(IContentProvider contentProvider)
+        public PlayerStaticDataLoader(IContentProvider contentProvider)
         {
             _contentProvider = contentProvider;
         }

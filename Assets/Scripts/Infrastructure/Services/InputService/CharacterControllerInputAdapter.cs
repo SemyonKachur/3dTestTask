@@ -3,19 +3,17 @@ using System.Linq;
 using Features.Player.Model;
 using Features.Player.Stats;
 using Features.Player.View;
-using Infrastructure.Services.InputService;
 using Infrastructure.Utils;
 using StarterAssets;
 using UniRx;
 using UnityEngine;
 using Zenject;
 
-namespace Features.Player
+namespace Infrastructure.Services.InputService
 {
     public class CharacterControllerInputAdapter : IInitializable,  IDisposable
     {
         private readonly IInputService _input;
-        private readonly IPlayerView _playerView;
         private readonly IPlayerModel _playerModel;
         private readonly StarterAssetsInputs _characterInput;
         private readonly CompositeDisposable _disposable;
@@ -26,7 +24,6 @@ namespace Features.Player
         public CharacterControllerInputAdapter(IInputService input, IPlayerView playerView, IPlayerModel playerModel)
         {
             _input = input;
-            _playerView = playerView;
             _playerModel = playerModel;
             _characterInput = playerView.PlayerRoot.GetComponent<StarterAssetsInputs>();
             _disposable = new CompositeDisposable();
@@ -47,6 +44,8 @@ namespace Features.Player
                 {
                     _characterInput.move = _input.Move * multiplier * Time.deltaTime;
                     _characterInput.look = _input.Look * Constants.RotateSpeed;
+                    _characterInput.jump = _input.IsJump;
+                    _characterInput.sprint = _input.IsRun;
                 }).AddTo(_disposable);
         }
 

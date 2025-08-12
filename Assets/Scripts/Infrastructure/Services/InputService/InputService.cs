@@ -13,15 +13,22 @@ namespace Infrastructure.Services.InputService
         
         public Vector2 Look => _look;
         private Vector2 _look;
+        
         public bool IsFire => _isFire;
         private bool _isFire;
+        
+        public bool IsJump => _isJump;
+        private bool _isJump;
+        
+        public bool IsRun => _isRun;
+        private bool _isRun;
         
         public float RotateSpeed => _rotationSpeed;
         private float _rotationSpeed = 10;
         
         private PlayerInput _input;
         private ICharacterStat _moveStat;
-        
+
         public void Initialize()
         {
             _input = new PlayerInput();
@@ -35,8 +42,15 @@ namespace Infrastructure.Services.InputService
             
             _input.Player.Fire.performed += Fire;
             _input.Player.Fire.canceled += StopFire;
+
+            _input.Player.Jump.performed += Jump;
+            _input.Player.Jump.canceled += StopJump;
         }
-        
+
+        private void StopJump(InputAction.CallbackContext obj) => _isJump = false;
+
+        private void Jump(InputAction.CallbackContext obj) => _isJump = true;
+
         public void EnablePlayerInput(bool isEnable)
         {
             if (isEnable)
@@ -49,20 +63,15 @@ namespace Infrastructure.Services.InputService
             }
         }
 
-        public void MoveInput(Vector2 newMoveDirection)
-        {
-            _move = newMoveDirection;
-        }
+        public void MoveInput(Vector2 newMoveDirection) => _move = newMoveDirection;
 
-        public void LookInput(Vector2 newLookDirection)
-        {
-            _look = newLookDirection;
-        }
+        public void LookInput(Vector2 newLookDirection) => _look = newLookDirection;
 
-        public void FireInput(bool isFire)
-        {
-            _isFire = isFire;
-        }
+        public void FireInput(bool isFire) => _isFire = isFire;
+
+        public void JumpInput(bool newJumpState) => _isJump =  newJumpState;
+
+        public void SprintInput(bool newSprintState) => _isRun =  newSprintState;
 
         private void Fire(InputAction.CallbackContext ctx) => 
             _isFire = true;
@@ -95,6 +104,9 @@ namespace Infrastructure.Services.InputService
                 
                 _input.Player.Fire.performed -= Fire;
                 _input.Player.Fire.canceled -= StopFire;
+                
+                _input.Player.Jump.performed -= Jump;
+                _input.Player.Jump.canceled -= StopJump;
                 
                 _input.Dispose();
             }

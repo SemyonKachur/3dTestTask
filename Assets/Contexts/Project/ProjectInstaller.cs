@@ -6,7 +6,6 @@ using Infrastructure.Services.Progress;
 using Infrastructure.Services.SaveService;
 using Infrastructure.Services.SceneLoader;
 using Infrastructure.Services.StaticDataService;
-using Infrastructure.States;
 using UnityEngine;
 using Zenject;
 
@@ -20,12 +19,14 @@ namespace Contexts.Project
             Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
             Container.Bind<IContentProvider>().To<ResourcesContentProvider>().AsSingle();
             Container.Bind<IProgressService>().To<ProgressService>().AsSingle();
-            Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
+            Container.Bind<IPlayerStaticDataLoader>().To<PlayerStaticDataLoader>().AsSingle();
             Container.Bind<ISaveLoadService>().To<JsonSaveLoadService>().AsSingle();
             Container.Bind<IAuthService>().To<MockAuthorizationService>().AsSingle();
             Container.Bind<IPlayerModel>().To<PlayerModel>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
             Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<EnemyStaticDataLoader>().AsSingle();
         }
     }
 }

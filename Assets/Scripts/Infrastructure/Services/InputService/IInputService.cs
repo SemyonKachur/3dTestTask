@@ -1,4 +1,3 @@
-using UniRx;
 using UnityEngine;
 
 namespace Infrastructure.Services.InputService
@@ -9,7 +8,9 @@ namespace Infrastructure.Services.InputService
         Vector2 Look { get; }
         
         bool IsFire { get; }
-        
+        bool IsJump { get; }
+        bool IsRun { get; }
+
         void EnablePlayerInput(bool isEnable);
 
         public void MoveInput(Vector2 newMoveDirection);
@@ -17,5 +18,9 @@ namespace Infrastructure.Services.InputService
         public void LookInput(Vector2 newLookDirection);
 
         public void FireInput(bool isFire);
+
+        public void JumpInput(bool newJumpState);
+        
+        public void SprintInput(bool newSprintState);
     }
 }
