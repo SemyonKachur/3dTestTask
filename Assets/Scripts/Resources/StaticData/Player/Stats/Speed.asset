@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a22372741045a8a356ca92564cc3c4, type: 3}
   m_Name: Speed
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Speed
+  <Id>k__BackingField: 3
   <Name>k__BackingField: Move speed
   <Description>k__BackingField: Player move speed
   <MaxValue>k__BackingField: 50
   <MinValue>k__BackingField: 5
   <CurrentValue>k__BackingField:
-    value: 5
+    value: 10
   <DefaultValue>k__BackingField: 5
   <CurrentLevel>k__BackingField:
     value: 1

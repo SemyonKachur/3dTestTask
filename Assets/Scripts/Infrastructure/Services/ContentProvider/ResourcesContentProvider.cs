@@ -10,6 +10,10 @@ namespace Infrastructure.Services.ContentProvider
         {
             var request = Resources.LoadAsync<T>(path);
             await request.ToUniTask();
+            if (request.asset == null)
+            {
+                Debug.LogError($"Cant load asset from path: {path}");
+            }
             return request.asset as T;
         }
 

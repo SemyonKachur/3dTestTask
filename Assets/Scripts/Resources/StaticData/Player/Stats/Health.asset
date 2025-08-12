@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a22372741045a8a356ca92564cc3c4, type: 3}
   m_Name: Health
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Health
+  <Id>k__BackingField: 1
   <Name>k__BackingField: Health
   <Description>k__BackingField: Player health points. When it is zero - player is
     dead.

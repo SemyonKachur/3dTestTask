@@ -16,10 +16,10 @@ MonoBehaviour:
   EnemySpawners:
   - Id: Archer
     EnemyType: 1
-    Position: {x: 10, y: 0, z: 10}
+    Position: {x: 6, y: 0, z: 25}
   - Id: Spearman
     EnemyType: 2
-    Position: {x: 0, y: 0, z: 10}
+    Position: {x: 5, y: 6, z: 10}
   - Id: Melee
     EnemyType: 3
     Position: {x: 0, y: 0, z: 10}

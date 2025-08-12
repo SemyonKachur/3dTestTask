@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a22372741045a8a356ca92564cc3c4, type: 3}
   m_Name: Damage
   m_EditorClassIdentifier: 
-  <Id>k__BackingField: Damage
+  <Id>k__BackingField: 2
   <Name>k__BackingField: Damage
   <Description>k__BackingField: The base damage that the player deals to enemies
   <MaxValue>k__BackingField: 10

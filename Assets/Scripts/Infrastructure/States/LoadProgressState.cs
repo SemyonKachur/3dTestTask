@@ -16,11 +16,11 @@ namespace Infrastructure.States
         private readonly GameStateMachine _gameStateMachine;
         private readonly IProgressService _progressService;
         private readonly ISaveLoadService _saveLoadProgress;
-        private readonly IPlayerStaticDataLoader _staticData;
+        private readonly IPlayerStaticDataProvider _staticData;
         private readonly IPlayerModel _playerModel;
 
         public LoadProgressState(GameStateMachine gameStateMachine, IProgressService progressService, 
-            ISaveLoadService saveLoadProgress, IPlayerStaticDataLoader staticData, IPlayerModel playerModel)
+            ISaveLoadService saveLoadProgress, IPlayerStaticDataProvider staticData, IPlayerModel playerModel)
         {
             _gameStateMachine = gameStateMachine;
             _progressService = progressService;

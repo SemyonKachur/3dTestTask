@@ -6,7 +6,6 @@ using Features.Player.View;
 using Infrastructure.Utils;
 using StarterAssets;
 using UniRx;
-using UnityEngine;
 using Zenject;
 
 namespace Infrastructure.Services.InputService
@@ -16,16 +15,18 @@ namespace Infrastructure.Services.InputService
         private readonly IInputService _input;
         private readonly IPlayerModel _playerModel;
         private readonly StarterAssetsInputs _characterInput;
+        private readonly FirstPersonController _characterController;
         private readonly CompositeDisposable _disposable;
 
         private ICharacterStat _moveStat;
-        private float multiplier = 1;
+        private float _sprintAdditiveSpeed = 5;
 
         public CharacterControllerInputAdapter(IInputService input, IPlayerView playerView, IPlayerModel playerModel)
         {
             _input = input;
             _playerModel = playerModel;
             _characterInput = playerView.PlayerRoot.GetComponent<StarterAssetsInputs>();
+            _characterController = playerView.PlayerRoot.GetComponent<FirstPersonController>();
             _disposable = new CompositeDisposable();
         }
         
@@ -35,14 +36,18 @@ namespace Infrastructure.Services.InputService
             if (moveStat != null)
             {
                 moveStat.CurrentValue
-                    .Subscribe(x => multiplier = x)
+                    .Subscribe(x =>
+                    {
+                        _characterController.MoveSpeed = x;
+                        _characterController.SprintSpeed = x + _sprintAdditiveSpeed;
+                    })
                     .AddTo(_disposable);
             }
             
             Observable.EveryUpdate()
                 .Subscribe(x =>
                 {
-                    _characterInput.move = _input.Move * multiplier * Time.deltaTime;
+                    _characterInput.move = _input.Move;
                     _characterInput.look = _input.Look * Constants.RotateSpeed;
                     _characterInput.jump = _input.IsJump;
                     _characterInput.sprint = _input.IsRun;

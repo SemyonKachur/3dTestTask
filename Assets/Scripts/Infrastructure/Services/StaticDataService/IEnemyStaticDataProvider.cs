@@ -3,7 +3,7 @@ using Features.Enemy;
 
 namespace Infrastructure.Services.StaticDataService
 {
-    public interface IEnemyStaticDataLoader : IStaticDataLoader
+    public interface IEnemyStaticDataProvider : IStaticDataLoader
     {
         public List<EnemyConfig> EnemyConfigs { get; }
     }

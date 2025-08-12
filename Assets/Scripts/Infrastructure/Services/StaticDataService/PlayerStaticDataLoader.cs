@@ -9,13 +9,13 @@ using UnityEngine;
 
 namespace Infrastructure.Services.StaticDataService
 {
-    public class PlayerStaticDataLoader : IPlayerStaticDataLoader
+    public class PlayerStaticDataProvider : IPlayerStaticDataProvider
     {
         private const string PlayerStaticDataPath = "StaticData/Player/PlayerStaticData";
         
         private readonly IContentProvider _contentProvider;
 
-        public PlayerStaticDataLoader(IContentProvider contentProvider)
+        public PlayerStaticDataProvider(IContentProvider contentProvider)
         {
             _contentProvider = contentProvider;
         }

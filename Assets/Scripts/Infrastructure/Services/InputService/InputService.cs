@@ -1,5 +1,5 @@
 using System;
-using Features.Player.Stats;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
@@ -8,108 +8,74 @@ namespace Infrastructure.Services.InputService
 {
     public class InputService : IInputService, IInitializable, IDisposable
     {
-        public Vector2 Move => _move;
-        private Vector2 _move;
-        
-        public Vector2 Look => _look;
-        private Vector2 _look;
-        
-        public bool IsFire => _isFire;
-        private bool _isFire;
-        
-        public bool IsJump => _isJump;
-        private bool _isJump;
-        
-        public bool IsRun => _isRun;
-        private bool _isRun;
-        
-        public float RotateSpeed => _rotationSpeed;
-        private float _rotationSpeed = 10;
-        
+        public Vector2 Move { get; private set; }
+        public Vector2 Look { get; private set; }
+        public bool IsFire { get; private set; }
+        public bool IsJump { get; private set; }
+        public bool IsRun { get; private set; }
+
         private PlayerInput _input;
-        private ICharacterStat _moveStat;
+        private readonly List<Action> _unbinders = new();
 
         public void Initialize()
         {
             _input = new PlayerInput();
             EnablePlayerInput(true);
-            
-            _input.Player.Move.performed += SetMove;
-            _input.Player.Move.canceled += StopMove;
-            
-            _input.Player.Rotate.performed += Rotate;
-            _input.Player.Rotate.canceled += StopRotate;
-            
-            _input.Player.Fire.performed += Fire;
-            _input.Player.Fire.canceled += StopFire;
 
-            _input.Player.Jump.performed += Jump;
-            _input.Player.Jump.canceled += StopJump;
+            BindValue(_input.Player.Move, vector2 => Move = vector2);
+            BindValue(_input.Player.Rotate, vector2 => Look = vector2);
+            BindButton(_input.Player.Fire, boolValue => IsFire = boolValue);
+            BindButton(_input.Player.Jump, boolValue => IsJump = boolValue);
+            BindButton(_input.Player.Run, boolValue => IsRun = boolValue);
         }
 
-        private void StopJump(InputAction.CallbackContext obj) => _isJump = false;
+        private void BindValue(InputAction action, Action<Vector2> setter)
+        {
+            void OnPerformed(InputAction.CallbackContext ctx) => setter(ctx.ReadValue<Vector2>());
+            void OnCanceled(InputAction.CallbackContext ctx) => setter(Vector2.zero);
 
-        private void Jump(InputAction.CallbackContext obj) => _isJump = true;
+            action.performed += OnPerformed;
+            action.canceled += OnCanceled;
+
+            _unbinders.Add(() =>
+            {
+                action.performed -= OnPerformed;
+                action.canceled -= OnCanceled;
+            });
+        }
+
+        private void BindButton(InputAction action, Action<bool> setter)
+        {
+            void OnPerformed(InputAction.CallbackContext _) => setter(true);
+            void OnCanceled(InputAction.CallbackContext _) => setter(false);
+
+            action.performed += OnPerformed;
+            action.canceled += OnCanceled;
+
+            _unbinders.Add(() =>
+            {
+                action.performed -= OnPerformed;
+                action.canceled -= OnCanceled;
+            });
+        }
+
+        public void MoveInput(Vector2 newMoveDirection) => Move = newMoveDirection;
+        public void LookInput(Vector2 newLookDirection) => Look = newLookDirection;
+        public void FireInput(bool isFire) => IsFire = isFire;
+        public void JumpInput(bool newJumpState) => IsJump = newJumpState;
+        public void SprintInput(bool newSprintState) => IsRun = newSprintState;
 
         public void EnablePlayerInput(bool isEnable)
         {
-            if (isEnable)
-            {
-                _input.Enable();
-            }
-            else
-            {
-                _input.Disable();
-            }
+            if (isEnable) _input.Enable();
+            else _input.Disable();
         }
-
-        public void MoveInput(Vector2 newMoveDirection) => _move = newMoveDirection;
-
-        public void LookInput(Vector2 newLookDirection) => _look = newLookDirection;
-
-        public void FireInput(bool isFire) => _isFire = isFire;
-
-        public void JumpInput(bool newJumpState) => _isJump =  newJumpState;
-
-        public void SprintInput(bool newSprintState) => _isRun =  newSprintState;
-
-        private void Fire(InputAction.CallbackContext ctx) => 
-            _isFire = true;
-        
-        private void StopFire(InputAction.CallbackContext obj) => 
-            _isFire = false;
-        
-        private void Rotate(InputAction.CallbackContext ctx) =>
-            _look = ctx.ReadValue<Vector2>();
-        private void StopRotate(InputAction.CallbackContext ctx) =>
-            _look = Vector2.zero;
-
-        private void SetMove(InputAction.CallbackContext ctx) => 
-            _move = ctx.ReadValue<Vector2>();
-
-        private void StopMove(InputAction.CallbackContext ctx) => 
-            _move = Vector2.zero;
-        
-        
 
         public void Dispose()
         {
-            if (_input != null)
-            {
-                _input.Player.Move.performed -= SetMove;
-                _input.Player.Move.canceled -= StopMove;
-                
-                _input.Player.Rotate.performed -= Rotate;
-                _input.Player.Rotate.canceled -= StopRotate;
-                
-                _input.Player.Fire.performed -= Fire;
-                _input.Player.Fire.canceled -= StopFire;
-                
-                _input.Player.Jump.performed -= Jump;
-                _input.Player.Jump.canceled -= StopJump;
-                
-                _input.Dispose();
-            }
+            foreach (var unbind in _unbinders)
+                unbind();
+            _input.Dispose();
         }
     }
 }

@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Infrastructure.Services.StaticDataService
 {
-    public class EnemyStaticDataLoader : IEnemyStaticDataLoader, IInitializable, IDisposable
+    public class EnemyStaticDataProvider : IEnemyStaticDataProvider, IInitializable, IDisposable
     {
         private const string StaticDataPath = "StaticData/Enemies/Enemies/";
 
@@ -17,7 +17,7 @@ namespace Infrastructure.Services.StaticDataService
         
         private readonly IContentProvider _contentProvider;
 
-        public EnemyStaticDataLoader(IContentProvider contentProvider)
+        public EnemyStaticDataProvider(IContentProvider contentProvider)
         {
             _contentProvider = contentProvider;
         }

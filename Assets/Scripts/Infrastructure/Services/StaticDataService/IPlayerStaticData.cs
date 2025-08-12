@@ -4,7 +4,7 @@ using Features.Player.Stats;
 
 namespace Infrastructure.Services.StaticDataService
 {
-    public interface IPlayerStaticDataLoader :  IStaticDataLoader
+    public interface IPlayerStaticDataProvider :  IStaticDataLoader
     {
         public List<ICharacterStat> CharacterDefaultStats { get; }
         public List<IItem> CharacterDefaultItems { get; }
