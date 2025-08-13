@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: ItemConfig
   m_EditorClassIdentifier: 
   <Id>k__BackingField: Experience
+  <ItemType>k__BackingField: 1
   <Name>k__BackingField: Experience
   <Description>k__BackingField: Player experience
   <ImagePath>k__BackingField: Icons/Experience

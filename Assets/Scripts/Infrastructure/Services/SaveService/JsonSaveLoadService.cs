@@ -42,9 +42,6 @@ namespace Infrastructure.Services.SaveService
 
         public async UniTask SaveProgress()
         {
-            foreach (ISavedProgress progressWriter in _gameFactory.ProgressWriters)
-                progressWriter.UpdateProgress(_progressService.Progress);
-
             var path = Path.Combine(Application.persistentDataPath, SavePath);
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);

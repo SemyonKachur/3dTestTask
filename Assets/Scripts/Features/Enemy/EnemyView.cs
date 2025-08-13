@@ -3,6 +3,7 @@ using System.Threading;
 using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 namespace Features.Enemy
 {
@@ -12,6 +13,8 @@ namespace Features.Enemy
         
         [field:SerializeField] public NavMeshAgent NavMeshAgent { get; private set; }
         [field:SerializeField] public Animator Animator { get; private set; }
+        [field: SerializeField] public Transform ShootPoint { get; private set; }
+        [field: SerializeField] public Slider _healthBar { get; private set; }
 
         private CompositeDisposable _disposables = new();
         private CancellationTokenSource _cts = new();
@@ -21,6 +24,17 @@ namespace Features.Enemy
 
         public void SetStopDistance(float stopDistanceCurrentValue) => 
             NavMeshAgent.stoppingDistance = stopDistanceCurrentValue;
+
+        public void InitHealth(float maxValue, float currentValue)
+        {
+            _healthBar.maxValue = maxValue;
+            _healthBar.value = currentValue;
+        }
+
+        public void UpdateHealth(float currentValue)
+        {
+            _healthBar.value = currentValue;
+        }
 
         public void SetTarget(Transform target)
         {
@@ -36,7 +50,6 @@ namespace Features.Enemy
             }
             
             _cts = new CancellationTokenSource();
-            
             Observable.Interval(TimeSpan.FromSeconds(.5f))
                 .TakeUntilDestroy(gameObject)
                 .Subscribe(x =>
@@ -52,7 +65,7 @@ namespace Features.Enemy
         public void Dispose()
         {
             _disposables.Dispose();
-            _cts.Cancel();
+            _cts?.Cancel();
             _cts = null;
             
             Destroy(gameObject);

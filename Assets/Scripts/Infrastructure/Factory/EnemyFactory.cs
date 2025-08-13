@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using Features.Enemy;
 using Features.Player.View;
 using Infrastructure.Services.ContentProvider;
+using Infrastructure.Services.Pools;
 using UnityEngine;
 
 namespace Infrastructure.Factory
@@ -12,12 +13,16 @@ namespace Infrastructure.Factory
     {
         private readonly IContentProvider _contentProvider;
         private readonly IPlayerView _playerView;
+        private readonly IBulletsPool _bulletsPool;
+        
         private readonly List<IEnemyPresenter> _presenters = new();
+        private readonly List<EnemyAttackPresenter> _attackPresenters = new();
 
-        public EnemyFactory(IContentProvider contentProvider, IPlayerView  playerView)
+        public EnemyFactory(IContentProvider contentProvider, IPlayerView  playerView, IBulletsPool bulletsPool)
         {
             _contentProvider = contentProvider;
             _playerView = playerView;
+            _bulletsPool = bulletsPool;
         }
 
         public async UniTask<IEnemyView> CreateEnemy(IEnemyModel enemy, Vector3 position)
@@ -29,7 +34,12 @@ namespace Infrastructure.Factory
             enemyPresenter.Initialize();
             _presenters.Add(enemyPresenter);
             
+            var attackPresenter = new EnemyAttackPresenter(enemy, enemyView, _playerView, _bulletsPool);
+            attackPresenter.Initialize();
+            _attackPresenters.Add(attackPresenter);
+            
             enemyView.SetTarget(_playerView.PlayerRoot);
+            
             return enemyView;
         }
 
@@ -39,6 +49,13 @@ namespace Infrastructure.Factory
             {
                 enemyPresenter.Dispose();
             }
+            _presenters.Clear();
+
+            foreach (var attackPresenter in _attackPresenters)
+            {
+                attackPresenter.Dispose();
+            }
+            _attackPresenters.Clear();
         }
     }
 }

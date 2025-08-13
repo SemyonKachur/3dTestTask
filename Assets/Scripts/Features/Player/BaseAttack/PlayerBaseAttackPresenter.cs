@@ -51,7 +51,7 @@ namespace Features.Player.BaseAttack
                         bullet.SetDamage(_damageStat.CurrentValue.Value);
                     }
                 }
-            });
+            }).AddTo(_disposables);
         }
 
         public void Dispose()

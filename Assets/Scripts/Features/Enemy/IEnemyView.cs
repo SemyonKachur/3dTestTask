@@ -11,11 +11,16 @@ namespace Features.Enemy
         public ReactiveCommand<float> OnDamageRecieved { get; }
         public NavMeshAgent NavMeshAgent { get; }
         public Animator Animator { get; }
-        
+        Transform ShootPoint { get; }
+
         void SetSpeed(float speedCurrentValue);
         
         void SetTarget(Transform target);
 
         void SetStopDistance(float stopDistanceCurrentValue);
+        
+        void InitHealth(float maxValue, float currentValue);
+        
+        void UpdateHealth(float currentValue);
     }
 }

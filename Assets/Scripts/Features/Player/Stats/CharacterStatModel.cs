@@ -26,5 +26,15 @@ namespace Features.Player.Stats
             CurrentValue.Value = currentValue ?? defaultValue;
             DefaultValue = defaultValue;
         }
+
+        public CharacterStatModel(CharacterStatConfig config)
+        {
+            Id = config.Id;
+            Name = config.Name;
+            Description = config.Description;
+            MaxValue = config.MaxValue;
+            CurrentValue.Value = config.CurrentValue.Value;
+            DefaultValue = config.DefaultValue;
+        }
     }
 }

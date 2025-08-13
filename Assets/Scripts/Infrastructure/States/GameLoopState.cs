@@ -21,15 +21,8 @@ namespace Infrastructure.States
         public UniTask Enter()
         {
             _disposable = new CompositeDisposable();
-            Observable.Interval(TimeSpan.FromSeconds(30))
-                .Subscribe( async x => await SaveProgress(x))
-                .AddTo(_disposable);
-            
             return UniTask.CompletedTask;
         }
-
-        private async UniTask SaveProgress(long l) => 
-            await _saveLoadService.SaveProgress();
 
         public UniTask Exit()
         {

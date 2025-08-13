@@ -7,8 +7,6 @@ namespace Infrastructure.Factory
 {
     public interface IGameFactory
     {
-        List<ISavedProgress> ProgressWriters { get; }
-        List<ISavedProgressReader> ProgressReaders { get; set; }
         void Cleanup();
         void WarmUp();
         UniTask<GameObject> CreateHud();

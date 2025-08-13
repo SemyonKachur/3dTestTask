@@ -95,15 +95,7 @@ namespace Infrastructure.States
             _progressService.Progress.InventoryItems = new List<IItem>();
             foreach (IItem item in _staticData.CharacterDefaultItems)
             {
-                var defaultItem = new InventoryItemBase()
-                {
-                    Id = item.Id,
-                    Name = item.Name,
-                    Count = new ReactiveProperty<int>(item.Count.Value),
-                    Description = item.Description,
-                    ImagePath = item.ImagePath,
-                    IsStackable = item.IsStackable,
-                };
+                var defaultItem = new InventoryItemBase(item);
                 _progressService.Progress.InventoryItems.Add(defaultItem);
             }
             

@@ -5,6 +5,7 @@ namespace Features.Inventory
     public interface IItem
     {
         public string Id { get; }
+        public ItemType ItemType { get; }
         public string Name { get; }
         public string Description { get; }
         
