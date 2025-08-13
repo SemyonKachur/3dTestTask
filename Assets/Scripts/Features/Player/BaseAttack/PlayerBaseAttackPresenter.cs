@@ -47,6 +47,7 @@ namespace Features.Player.BaseAttack
                      
                         var bullet = _bulletsPool.GetBullet();
                         bullet.transform.position = _view.ShootPoint.position;
+                        bullet.transform.rotation = _view.ShootPoint.rotation;
                         bullet.SetDamage(_damageStat.CurrentValue.Value);
                     }
                 }

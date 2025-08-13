@@ -47,7 +47,7 @@ namespace Infrastructure.Services.Pools
                     return;
                 }
                 
-                _rigidbody.AddForce(Vector3.forward * _speed);
+                _rigidbody.AddForce(transform.forward * _speed);
             }
         }
     }
