@@ -6,6 +6,8 @@ using Infrastructure.Services.Progress;
 using Infrastructure.Services.SaveService;
 using Infrastructure.Services.SceneLoader;
 using Infrastructure.Services.StaticDataService;
+using Infrastructure.Services.TimeService;
+using UI.MainMenu;
 using UnityEngine;
 using Zenject;
 
@@ -25,6 +27,7 @@ namespace Contexts.Project
             Container.Bind<IPlayerModel>().To<PlayerModel>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
             Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
+            Container.Bind<ITimeService>().To<TimeService>().AsSingle();
             
             Container.BindInterfacesAndSelfTo<EnemyStaticDataProvider>().AsSingle();
         }

@@ -16,15 +16,15 @@ MonoBehaviour:
   <Name>k__BackingField: Health
   <Description>k__BackingField: Player health points. When it is zero - player is
     dead.
-  <MaxValue>k__BackingField: 100
+  <MaxValue>k__BackingField: 20
   <MinValue>k__BackingField: 0
   <CurrentValue>k__BackingField:
-    value: 100
-  <DefaultValue>k__BackingField: 100
+    value: 20
+  <DefaultValue>k__BackingField: 20
   <CurrentLevel>k__BackingField:
     value: 1
   <UpgradeType>k__BackingField: 1
   <MaxLevel>k__BackingField: 10
-  <AdditionalEffectValue>k__BackingField: 5
+  <AdditionalEffectValue>k__BackingField: 2
   <Cost>k__BackingField: 2
   <IsMaxLevel>k__BackingField: 0

@@ -15,10 +15,10 @@ MonoBehaviour:
   <Id>k__BackingField: 2
   <Name>k__BackingField: Damage
   <Description>k__BackingField: The base damage that the player deals to enemies
-  <MaxValue>k__BackingField: 10
+  <MaxValue>k__BackingField: 3
   <MinValue>k__BackingField: 1
   <CurrentValue>k__BackingField:
-    value: 1
+    value: 3
   <DefaultValue>k__BackingField: 1
   <CurrentLevel>k__BackingField:
     value: 1

@@ -17,7 +17,7 @@ namespace UI.UpgradeWindow
         public IObservable<Unit> OnBackClicked => _backButton.OnClickAsObservable();
         public IObservable<Unit> OnApplyClicked => _applyButton.OnClickAsObservable();
         
-        [SerializeField] private List<UpgradableStatToggle> _heroStats = new();
+        [SerializeField] private List<UpgradableCharacterStatToggle> _heroStats = new();
         [SerializeField] private Button _backButton;
         [SerializeField] private Button _applyButton;
 

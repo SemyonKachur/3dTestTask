@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 7129896810583701224}
   - component: {fileID: 8111666135009050478}
   - component: {fileID: 2350349637782131463}
+  - component: {fileID: 3782761622083063240}
   m_Layer: 5
   m_Name: AttackButton
   m_TagString: Untagged
@@ -330,6 +331,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3782761622083063240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147681108474270008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cd4e4c54d949bfac883321ead1ba6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1901541532565192991
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +656,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1166461661516522563}
+  - component: {fileID: 4322292583877864359}
   m_Layer: 5
   m_Name: GameWIndow
   m_TagString: Untagged
@@ -678,6 +692,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4322292583877864359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4021731375065941620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b59bbad08933254082d66724fa7bba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthBar: {fileID: 7292309750938945628}
+  _healthValue: {fileID: 3150522345885039656}
+  _experienceText: {fileID: 1577400229986890727}
+  _menuButton: {fileID: 9215436991146830087}
+  _joystick: {fileID: 7983086918137912817}
+  _attackButton: {fileID: 3782761622083063240}
+  _runButton: {fileID: 5614658404175221055}
+  _jumpButton: {fileID: 2608943163283097949}
+  _lookHandler: {fileID: 6333503091919041762}
 --- !u!1 &4143709743771805883
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,6 +725,7 @@ GameObject:
   - component: {fileID: 750237772459393665}
   - component: {fileID: 4835005751448875265}
   - component: {fileID: 8013749667697121392}
+  - component: {fileID: 5614658404175221055}
   m_Layer: 5
   m_Name: SprintButton
   m_TagString: Untagged
@@ -799,6 +835,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5614658404175221055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4143709743771805883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cd4e4c54d949bfac883321ead1ba6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4453052186101500255
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,6 +993,7 @@ GameObject:
   - component: {fileID: 8795882124324169312}
   - component: {fileID: 8657475088198368372}
   - component: {fileID: 4844653837004434206}
+  - component: {fileID: 2608943163283097949}
   m_Layer: 5
   m_Name: JumpButton
   m_TagString: Untagged
@@ -1054,6 +1103,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2608943163283097949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798436762223590622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cd4e4c54d949bfac883321ead1ba6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5030888525975345757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1622,6 +1683,7 @@ GameObject:
   - component: {fileID: 132453131588936773}
   - component: {fileID: 5872703863166453790}
   - component: {fileID: 5111958173505608520}
+  - component: {fileID: 6333503091919041762}
   m_Layer: 5
   m_Name: RotateArea
   m_TagString: Untagged
@@ -1686,6 +1748,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6333503091919041762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9041467462754361426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5094cded3d1f434b89609322744d4d8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5075367870200130574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1783,6 +1857,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+--- !u!114 &7983086918137912817 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+  m_PrefabInstance: {fileID: 5075367870200130574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7983086918137912828 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}

@@ -1,18 +1,25 @@
 using System;
 using System.Collections.Generic;
+using UI.MainMenu;
+using UniRx;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
 
 namespace Infrastructure.Services.InputService
 {
-    public class InputService : IInputService, IInitializable, IDisposable
+    public class InputService : IInputService, IInitializable, IDisposable, IWindowOpenRequest
     {
+        public ReactiveCommand<WindowType> OnShowWindow { get; } = new();
+        
         public Vector2 Move { get; private set; }
         public Vector2 Look { get; private set; }
         public bool IsFire { get; private set; }
         public bool IsJump { get; private set; }
         public bool IsRun { get; private set; }
+        
+        public bool IsPause { get; private set; }
+        
 
         private PlayerInput _input;
         private readonly List<Action> _unbinders = new();
@@ -27,6 +34,14 @@ namespace Infrastructure.Services.InputService
             BindButton(_input.Player.Fire, boolValue => IsFire = boolValue);
             BindButton(_input.Player.Jump, boolValue => IsJump = boolValue);
             BindButton(_input.Player.Run, boolValue => IsRun = boolValue);
+            BindButton(_input.Player.Pause, boolValue => 
+            {
+                if (boolValue)
+                {
+                    OnShowWindow.Execute(IsPause ? WindowType.GameWindow : WindowType.MainMenu);
+                    IsPause = !IsPause;
+                }
+            });
         }
 
         private void BindValue(InputAction action, Action<Vector2> setter)
@@ -58,7 +73,7 @@ namespace Infrastructure.Services.InputService
                 action.canceled -= OnCanceled;
             });
         }
-
+        
         public void MoveInput(Vector2 newMoveDirection) => Move = newMoveDirection;
         public void LookInput(Vector2 newLookDirection) => Look = newLookDirection;
         public void FireInput(bool isFire) => IsFire = isFire;
@@ -77,5 +92,6 @@ namespace Infrastructure.Services.InputService
                 unbind();
             _input.Dispose();
         }
+
     }
 }

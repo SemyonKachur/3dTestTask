@@ -11,6 +11,8 @@ namespace Infrastructure.Services.InputService
         bool IsJump { get; }
         bool IsRun { get; }
 
+        bool IsPause { get; }
+
         void EnablePlayerInput(bool isEnable);
 
         public void MoveInput(Vector2 newMoveDirection);

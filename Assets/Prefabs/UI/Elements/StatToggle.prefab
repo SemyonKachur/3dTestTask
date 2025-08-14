@@ -554,7 +554,7 @@ GameObject:
   - component: {fileID: 1564784814982903477}
   - component: {fileID: 1278448201188409041}
   - component: {fileID: 7359348237567064820}
-  - component: {fileID: 8596165055818973123}
+  - component: {fileID: 2819713210298375198}
   m_Layer: 5
   m_Name: StatToggle
   m_TagString: Untagged
@@ -685,7 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameObjects:
   - {fileID: 2035430998356989395}
---- !u!114 &8596165055818973123
+--- !u!114 &2819713210298375198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -694,6 +694,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4524403325711291494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1dba2b7e951436792ed9aa96bf53648, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ff1c7ba8ab54281b1adf7aa9c94afff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _statName: {fileID: 122578101550492378}
+  _statValue: {fileID: 8009414212733715501}
+  _upgradeButton: {fileID: 8160638882784759959}
