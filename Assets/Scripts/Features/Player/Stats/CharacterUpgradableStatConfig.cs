@@ -14,5 +14,9 @@ namespace Features.Player.Stats
         [field: SerializeField] public float AdditionalEffectValue { get; private set; }
         [field: SerializeField] public int Cost { get; private set; }
         [field: SerializeField] public bool IsMaxLevel { get; private set; }
+        
+        public void Upgrade()
+        {
+        }
     }
 }

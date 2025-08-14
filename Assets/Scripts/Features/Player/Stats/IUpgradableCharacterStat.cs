@@ -10,5 +10,7 @@ namespace Features.Player.Stats
         public float AdditionalEffectValue { get; }
         public int Cost { get; }
         public bool IsMaxLevel { get; }
+
+        public void Upgrade();
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using UniRx;
+using UnityEngine;
 
 namespace Features.Player.Stats
 {
@@ -12,6 +13,28 @@ namespace Features.Player.Stats
         public float AdditionalEffectValue { get; set; }
         public int Cost { get; set; }
         public bool IsMaxLevel => CurrentLevel.Value >= MaxLevel;
+        public void Upgrade()
+        {
+            if (!IsMaxLevel)
+            {
+                MaxValue += GetUpgradeValueByType();
+                CurrentValue.Value += GetUpgradeValueByType();
+                CurrentLevel.Value += 1;
+            }
+            else
+            {
+                Debug.LogError($"Max level of {Id.ToString()}");
+            }
+        }
+
+        private float GetUpgradeValueByType() =>
+            UpgradeType switch
+            {
+                UpgradeType.AbsoluteValue => AdditionalEffectValue,
+                UpgradeType.PercentageFromBaseValue => DefaultValue * AdditionalEffectValue,
+                UpgradeType.PercentageFromCurrentValue => MaxValue * AdditionalEffectValue,
+                _ => AdditionalEffectValue
+            };
 
         public UpgradableCharacterStatModel()
         {
