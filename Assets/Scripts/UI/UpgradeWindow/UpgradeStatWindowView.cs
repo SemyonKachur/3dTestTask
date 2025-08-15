@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Features.Inventory;
 using Features.Player.Stats;
 using TMPro;
@@ -16,6 +17,9 @@ namespace UI.UpgradeWindow
         
         public IObservable<Unit> OnBackClicked => _backButton.OnClickAsObservable();
         public IObservable<Unit> OnApplyClicked => _applyButton.OnClickAsObservable();
+
+        public ReactiveCommand<CharacterStatTypeId> OnUpgradeClicked = new();
+        
         
         [SerializeField] private List<UpgradableCharacterStatToggle> _heroStats = new();
         [SerializeField] private Button _backButton;
@@ -27,11 +31,66 @@ namespace UI.UpgradeWindow
         [SerializeField] private TMP_Text _upgradeValueText;
         [SerializeField] private TMP_Text _costText;
         
-        public void Show() => gameObject.SetActive(true);
+        private CompositeDisposable _disposables;
+        private List<IUpgradableCharacterStat> _upgradableStats = new();
+        private IItem _playerExperience;
+        
+        public void Show()
+        { 
+            gameObject.SetActive(true);
+            var activeToggleType = _heroStats.First(x => x.IsSelected).StatId;
+            var stat = _upgradableStats.First(x => x.Id == activeToggleType);
+            SetView(stat, _playerExperience);
+        }
 
         public void Hide() => gameObject.SetActive(false);
 
-        public void SetView(IUpgradableCharacterStat stat, IItem playerExperience)
+        public void Construct(List<IUpgradableCharacterStat> upgradableStat, IItem playerExperience)
+        {
+            _upgradableStats =  upgradableStat;
+            _playerExperience = playerExperience;
+            
+            _disposables?.Dispose();
+            _disposables = new();
+            
+            foreach (var statToggle in _heroStats)
+            {
+                statToggle.gameObject.SetActive(false);
+            }
+
+            for (int i = 0; i < upgradableStat.Count; i++)
+            {
+                if (_heroStats.Count >= i)
+                {
+                    var userStat = upgradableStat[i];
+                    
+                    _heroStats[i].gameObject.SetActive(true);
+                    _heroStats[i].Construct(userStat);
+                    _heroStats[i].SetUpgradeInteractable(userStat.Cost<= _playerExperience.Count.Value);
+                    
+                    _heroStats[i].OnUpgradeButtonClicked.
+                        Subscribe(x =>
+                        {
+                            if (_playerExperience.Count.Value >= userStat.Cost)
+                            {
+                                OnUpgradeClicked.Execute(userStat.Id);
+                                userStat.Upgrade();
+                                _playerExperience.Count.Value -= userStat.Cost;
+                                SetView(userStat, playerExperience);
+                            }
+                        })
+                        .AddTo(_disposables);
+                   
+                    _heroStats[i].OnStatSelected.Subscribe(x =>
+                    {
+                        _heroStats[i].SetUpgradeInteractable(userStat.Cost<= _playerExperience.Count.Value);
+                        SetView(userStat, playerExperience);
+                    }).AddTo(_disposables);
+                }
+            }
+        }
+
+        private void SetView(IUpgradableCharacterStat stat, IItem playerExperience)
         {
             _description.text = stat.Description;
             _upgradeTypeText.text = stat.UpgradeType.ToString();

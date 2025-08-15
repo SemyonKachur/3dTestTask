@@ -28,5 +28,19 @@ namespace Features.Inventory
             Count = new ReactiveProperty<int>(config.Count.Value);
             IsStackable = config.IsStackable;
         }
+        
+        public IItem Clone()
+        {
+            return new InventoryItemBase()
+            {
+                Id = Id,
+                ItemType = ItemType,
+                Name = Name,
+                Description = Description,
+                ImagePath = ImagePath,
+                Count = new ReactiveProperty<int>(Count.Value),
+                IsStackable = IsStackable
+            };
+        }
     }
 }

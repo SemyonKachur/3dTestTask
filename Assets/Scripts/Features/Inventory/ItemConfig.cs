@@ -15,5 +15,7 @@ namespace Features.Inventory
         [field: SerializeField] public string ImagePath { get; private set; }
         [field: SerializeField] public ReactiveProperty<int> Count { get; private set; }
         [field: SerializeField] public bool IsStackable { get; private set; }
+        
+        public IItem Clone() => ScriptableObject.CreateInstance<ItemConfig>();
     }
 }

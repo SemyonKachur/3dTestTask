@@ -31,8 +31,8 @@ namespace Features.Player.Stats
             UpgradeType switch
             {
                 UpgradeType.AbsoluteValue => AdditionalEffectValue,
-                UpgradeType.PercentageFromBaseValue => DefaultValue * AdditionalEffectValue,
-                UpgradeType.PercentageFromCurrentValue => MaxValue * AdditionalEffectValue,
+                UpgradeType.PercentageFromBaseValue => DefaultValue * AdditionalEffectValue/100,
+                UpgradeType.PercentageFromCurrentValue => MaxValue * AdditionalEffectValue/100,
                 _ => AdditionalEffectValue
             };
 
@@ -41,7 +41,7 @@ namespace Features.Player.Stats
         }
         
         public UpgradableCharacterStatModel(CharacterStatTypeId id, string name, string description, float maxValue,  
-            float? currentValue, float defaultValue, UpgradeType upgradeType,
+            float currentValue, float defaultValue, UpgradeType upgradeType,
             int maxLevel, float additionalEffectValue, int cost) 
             : base(id, name, description, maxValue, currentValue, defaultValue)
         {
@@ -50,6 +50,12 @@ namespace Features.Player.Stats
             MaxLevel = maxLevel;
             AdditionalEffectValue = additionalEffectValue;
             Cost = cost;
+        }
+        
+        public new IUpgradableCharacterStat Clone()
+        {
+            return new UpgradableCharacterStatModel(Id, Name, Description, MaxValue, CurrentValue.Value, DefaultValue,
+                UpgradeType, MaxLevel, AdditionalEffectValue, Cost);
         }
     }
 }

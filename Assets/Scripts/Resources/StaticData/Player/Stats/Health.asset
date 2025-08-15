@@ -25,6 +25,6 @@ MonoBehaviour:
     value: 1
   <UpgradeType>k__BackingField: 1
   <MaxLevel>k__BackingField: 10
-  <AdditionalEffectValue>k__BackingField: 2
+  <AdditionalEffectValue>k__BackingField: 10
   <Cost>k__BackingField: 2
   <IsMaxLevel>k__BackingField: 0

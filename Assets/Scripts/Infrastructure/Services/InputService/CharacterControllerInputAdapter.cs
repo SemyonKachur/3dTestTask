@@ -5,7 +5,6 @@ using Features.Player.Stats;
 using Features.Player.View;
 using Infrastructure.Utils;
 using StarterAssets;
-using UI.MainMenu;
 using UniRx;
 using Zenject;
 

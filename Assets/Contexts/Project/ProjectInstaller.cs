@@ -27,7 +27,6 @@ namespace Contexts.Project
             Container.Bind<IPlayerModel>().To<PlayerModel>().AsSingle();
             Container.Bind<IGameFactory>().To<GameFactory>().AsSingle();
             Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
-            Container.Bind<ITimeService>().To<TimeService>().AsSingle();
             
             Container.BindInterfacesAndSelfTo<EnemyStaticDataProvider>().AsSingle();
         }

@@ -13,5 +13,7 @@ namespace Features.Inventory
         
         public ReactiveProperty<int> Count { get; }
         public bool IsStackable { get; }
+
+        public IItem Clone();
     }
 }

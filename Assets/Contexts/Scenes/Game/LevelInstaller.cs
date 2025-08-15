@@ -4,6 +4,7 @@ using Features.Score;
 using Infrastructure.Factory;
 using Infrastructure.Services.Lifecycle;
 using Infrastructure.Services.Pools;
+using Infrastructure.Services.TimeService;
 using StaticData;
 using UI;
 using UI.GameWindow;
@@ -34,6 +35,7 @@ namespace Contexts.Scenes.Game
             
             Container.BindInterfacesAndSelfTo<BulletsPool>().AsSingle();
             
+            Container.BindInterfacesAndSelfTo<TimeService>().AsSingle();
             Container.BindInterfacesAndSelfTo<EnemyFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<InfinityEnemiesGameMode>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerExperienceProvider>().AsSingle();

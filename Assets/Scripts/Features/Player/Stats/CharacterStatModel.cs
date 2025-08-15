@@ -36,5 +36,19 @@ namespace Features.Player.Stats
             CurrentValue.Value = config.CurrentValue.Value;
             DefaultValue = config.DefaultValue;
         }
+        
+        public ICharacterStat Clone()
+        {
+            return new CharacterStatModel()
+            {
+                Id = Id,
+                Name = Name,
+                Description = Description,
+                MaxValue = MaxValue,
+                CurrentValue = new ReactiveProperty<float>(CurrentValue.Value),
+                DefaultValue = DefaultValue
+            };
+        }
+
     }
 }

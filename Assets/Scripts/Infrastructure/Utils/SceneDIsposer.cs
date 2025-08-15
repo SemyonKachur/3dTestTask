@@ -15,7 +15,7 @@ namespace Infrastructure.Utils
         
         private void DisposeAll()
         {
-            foreach (var obj in _container.ResolveAll<IDisposable>())
+            foreach (var obj in _container?.ResolveAll<IDisposable>())
             {
                 obj.Dispose();
             }

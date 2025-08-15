@@ -18,5 +18,8 @@ namespace Features.Player.Stats
         public void Upgrade()
         {
         }
+
+        public new IUpgradableCharacterStat Clone() => 
+            CreateInstance<CharacterUpgradableStatConfig>();
     }
 }

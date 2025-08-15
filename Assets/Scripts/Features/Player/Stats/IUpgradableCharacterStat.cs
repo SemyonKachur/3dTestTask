@@ -12,5 +12,7 @@ namespace Features.Player.Stats
         public bool IsMaxLevel { get; }
 
         public void Upgrade();
+        
+        public new IUpgradableCharacterStat Clone();
     }
 }

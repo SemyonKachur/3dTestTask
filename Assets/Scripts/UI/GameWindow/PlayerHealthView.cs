@@ -9,7 +9,7 @@ namespace UI.GameWindow
 {
     public class PlayerHealthView : IDisposable
     {
-        private const float Multiplier = 10.0f;
+        private const int Multiplier = 10;
         
         private readonly IUpgradableCharacterStat _playerHealth;
         private readonly Slider _healthBar;
